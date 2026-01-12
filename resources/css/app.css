@@ -1,0 +1,220 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+@source "../views";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--reka-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--reka-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+}
+
+:root {
+  --background: oklch(0.3332 0.0405 147.13);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.9596 0.0041 121.56);
+  --muted-foreground: oklch(0.4717 0.0621 147.46);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+
+  --sidebar: oklch(25.2% 0.028 142.5);
+  --sidebar-foreground: oklch(98.4% 0.005 142.5);
+  --sidebar-primary: oklch(22.1% 0.035 142.5);
+  --sidebar-primary-foreground: oklch(98.7% 0.002 142.5);
+  --sidebar-accent: oklch(45.942% 0.04734 143.767);
+  --sidebar-accent-foreground: oklch(99.257% 0.01274 142.207);
+  --sidebar-border: oklch(88.5% 0.012 142.5);
+  --sidebar-ring: oklch(45.8% 0.038 142.5);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  h1 {
+    font-family: KarolSans;
+    font-weight: 600 !important;
+    /* font-size: 68px !important;
+    line-height: 102px !important;
+    letter-spacing: 0px; */
+  }
+
+  h2 {
+    font-family: KarolSans;
+    font-weight: 600 !important;
+    /* font-size: 56px !important;
+    line-height: 84px !important;
+    letter-spacing: 0px; */
+  }
+
+  .swal-icon {
+    border-color: #283C2A !important;
+    color: #283C2A !important;
+  }
+
+  .swal-info-icon {
+    border-color: #86857E !important;
+    color: #86857E !important;
+  }
+
+  .swal-success-icon {
+    border-color: #1A8245 !important;
+    color: #1A8245 !important;
+  }
+
+  .swal-warning-icon {
+    border-color: #F27430 !important;
+    color: #F27430 !important;
+  }
+
+  .swal-error-icon {
+    border-color: #E10E0E !important;
+    color: #E10E0E !important;
+  }
+}
+
+/* Twogether Sans */
+@font-face {
+  font-family: "TwogetherSans";
+  src: url("../fonts/TwogetherSans/TwogetherSans-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TwogetherSans";
+  src: url("../fonts/TwogetherSans/TwogetherSans-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TwogetherSans";
+  src: url("../fonts/TwogetherSans/TwogetherSans-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TwogetherSans";
+  src: url("../fonts/TwogetherSans/TwogetherSans-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Karol Sans */
+@font-face {
+  font-family: "karolSans";
+  src: url("../fonts/KarolSans/Karol_Sans_Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "karolSans";
+  src: url("../fonts/KarolSans/Karol_Sans_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "karolSans";
+  src: url("../fonts/KarolSans/Karol_Sans_SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "karolSans";
+  src: url("../fonts/KarolSans/Karol_Sans_Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}

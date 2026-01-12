@@ -1,0 +1,28 @@
+/* pagination */
+.swiper-pagination {
+    position: relative;
+    bottom: -100%;
+}
+
+.swiper-pagination-bullet {
+  background: #283C2A !important;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  background: #283C2A !important;
+  opacity: 1;
+}
+
+/* controls */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #283C2A !important;
+  transition: transform 0.2s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  transform: scale(1.2);
+  color: #283C2A !important;
+}
