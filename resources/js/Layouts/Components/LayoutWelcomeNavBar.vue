@@ -24,10 +24,6 @@
               'xl:flex xl:bg-transparent xl:p-0 xl:shadow-none xl:rounded-none'
             ]">
             <li v-for="item in navbarMenu" :key="item.routeName">
-              <!-- <Dropdown v-if="item.menu" :label="item.label" :childRoutes="item.menu">
-                <DropdownLink v-for="subItem in item.menu" :routeName="subItem.routeName" :label="subItem.label" />
-              </Dropdown> -->
-
               <NavLink :routeName="item.routeName" :label="item.label" />
             </li>
 

@@ -18,7 +18,7 @@ const props = defineProps({
     active: {
         type: Boolean,
         default: null
-    }, 
+    },
     label: {
         type: String,
         default: 'Link',

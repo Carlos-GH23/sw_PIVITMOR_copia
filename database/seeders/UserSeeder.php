@@ -13,41 +13,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name'              => 'Administrador',
-            'email'             => 'admin@gmail.com',
-            'password'          => '12345678',
-            'email_verified_at' => now(),
-        ]);
-        // User::create([
-        //     'name'              => 'Empresa',
-        //     'email'             => 'empresa@gmail.com',
-        //     'password'          => '12345678',
-        //     'email_verified_at' => now(),
-        // ]);
-        // User::create([
-        //     'name'              => 'Académico',
-        //     'email'             => 'academico@gmail.com',
-        //     'password'          => '12345678',
-        //     'email_verified_at' => now(),
-        // ]);
-        // User::create([
-        //     'name'              => 'Institución',
-        //     'email'             => 'institucion@gmail.com',
-        //     'password'          => '12345678',
-        //     'email_verified_at' => now(),
-        // ]);
-        // User::create([
-        //     'name'              => 'ONG',
-        //     'email'             => 'ong@gmail.com',
-        //     'password'          => '12345678',
-        //     'email_verified_at' => now(),
-        // ]);
-        // User::create([
-        //     'name'              => 'Gobierno',
-        //     'email'             => 'gobierno@gmail.com',
-        //     'password'          => '12345678',
-        //     'email_verified_at' => now(),
-        // ]);
+        // Create Super Admin user
+        $superAdmin = User::firstOrCreate(
+            ['email' => 'admin@admin.com'],
+            [
+                'name' => 'Super Admin',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        $superAdmin->assignRole('Super Admin');
     }
 }

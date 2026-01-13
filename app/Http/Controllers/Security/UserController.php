@@ -29,8 +29,8 @@ class UserController extends Controller
         $this->source    = "Core/Security/User/";
         $this->model     = new User();
         $this->middleware("permission:{$this->routeName}index")->only(['index', 'show']);
-        $this->middleware("permission:{$this->routeName}store")->only(['store', 'create']);
-        $this->middleware("permission:{$this->routeName}update")->only(['edit', 'update']);
+        $this->middleware("permission:{$this->routeName}create")->only(['store', 'create']);
+        $this->middleware("permission:{$this->routeName}edit")->only(['edit', 'update']);
         $this->middleware("permission:{$this->routeName}delete")->only(['destroy']);
     }
 
@@ -85,7 +85,6 @@ class UserController extends Controller
         $user = $this->model::create($request->validated());
         $user->syncRoles($request->roles);
 
-        $this->createProfile($user, $request->roles[0]);
         return redirect()->route("{$this->routeName}index")->with('success', 'Usuario creado con éxito');
     }
 
@@ -134,32 +133,6 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route("{$this->routeName}index")->with('success', 'Usuario eliminado con éxito');
-    }
-
-    private function createProfile(User $user, $role)
-    {
-        switch ($role) {
-            case 2:
-                $user->company()->create([
-                    'name' => $user->name,
-                ]);
-                break;
-            case 4:
-                $user->institution()->create([
-                    'name' => $user->name,
-                ]);
-                break;
-            case 5:
-                $user->nonProfitOrganization()->create([
-                    'name' => $user->name,
-                ]);
-                break;
-            case 6:
-                $user->governmentAgency()->create([
-                    'name' => $user->name,
-                ]);
-                break;
-        }
     }
 
     protected function getOrderableRelations(): array

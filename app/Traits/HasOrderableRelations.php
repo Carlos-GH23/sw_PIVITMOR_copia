@@ -6,27 +6,38 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait HasOrderableRelations
 {
-   
-    abstract protected function getOrderableRelations(): array;
-
-    protected function applyOrdering(Builder $query, string $orderField, string $direction = 'asc'): void
+    /**
+     * Apply ordering to the query, supporting both direct columns and relations.
+     *
+     * @param Builder $query
+     * @param string $order
+     * @param string $direction
+     * @return Builder
+     */
+    protected function applyOrdering(Builder $query, string $order = 'id', string $direction = 'desc'): Builder
     {
-        $relations = $this->getOrderableRelations();
+        $orderableRelations = $this->getOrderableRelations();
 
-        if (isset($relations[$orderField])) {
-            $this->applyRelationOrder($query, $relations[$orderField], $direction);
-        } else {
-            $query->orderBy($orderField, $direction);
+        if (isset($orderableRelations[$order])) {
+            [$relation, $relatedColumn, $orderColumn] = $orderableRelations[$order];
+
+            return $query->join($relation, function ($join) use ($relation, $relatedColumn) {
+                $join->on('users.id', '=', "{$relation}.{$relatedColumn}");
+            })->orderBy("{$relation}.{$orderColumn}", $direction)
+              ->select('users.*');
         }
+
+        return $query->orderBy($order, $direction);
     }
 
-    private function applyRelationOrder(Builder $query, array $config, string $direction): void
+    /**
+     * Define orderable relations.
+     * Override this method in the controller to specify which relations can be ordered.
+     *
+     * @return array
+     */
+    protected function getOrderableRelations(): array
     {
-        [$table, $foreignKey, $orderColumn] = $config;
-        $baseTable = $query->getModel()->getTable();
-
-        $query->leftJoin($table, "{$table}.id", '=', "{$baseTable}.{$foreignKey}")
-            ->orderBy("{$table}.{$orderColumn}", $direction)
-            ->select("{$baseTable}.*");
+        return [];
     }
 }

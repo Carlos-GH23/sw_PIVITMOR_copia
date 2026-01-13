@@ -32,7 +32,7 @@
             <div class="flex gap-2 h-10 sm:justify-center md:basis-1/5 lg:justify-evenly lg:mt-7 bgred">
                 <BaseButton @click="$emit('clearFilters')" class="grow" :icon="mdiBroom" color="lightDark"
                     label="Limpiar filtros" small />
-                <BaseButton v-if="verifyPermission(`${routeName}store`)" class="grow" :routeName="`${routeName}create`"
+                <BaseButton v-if="verifyPermission(`${routeName}create`)" class="grow" :routeName="`${routeName}create`"
                     :icon="mdiPlus" color="info" label="Agregar" small />
             </div>
         </div>

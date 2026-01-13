@@ -27,8 +27,8 @@ class ModuleController extends Controller
         $this->routeName = 'modules.';
 
         $this->middleware("permission:{$this->routeName}index")->only(['index', 'show']);
-        $this->middleware("permission:{$this->routeName}store")->only(['store', 'create']);
-        $this->middleware("permission:{$this->routeName}update")->only(['update', 'edit']);
+        $this->middleware("permission:{$this->routeName}create")->only(['store', 'create']);
+        $this->middleware("permission:{$this->routeName}edit")->only(['update', 'edit']);
         $this->middleware("permission:{$this->routeName}delete")->only(['destroy']);
     }
 
