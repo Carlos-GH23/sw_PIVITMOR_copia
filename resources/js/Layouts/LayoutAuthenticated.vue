@@ -13,8 +13,6 @@
                     <Banner />
 
                     <slot />
-
-                    <ChatBot @open-chat="openChat" @close-chat="closeChat" :showChat="showChat" />
                 </SectionMain>
             </div>
 
@@ -35,21 +33,7 @@ import {
 } from '@/Components/ui/sidebar';
 
 import { useCookies } from '@vueuse/integrations/useCookies';
-import ChatBot from './Components/ChatBot.vue';
-import { provide, ref } from 'vue';
 
 const cookies = useCookies(['sidebar_state'])
 const defaultOpen = cookies.get('sidebar_state', true);
-
-const showChat = ref(false);
-
-const openChat = () => {
-    showChat.value = true;
-};
-
-const closeChat = () => {
-    showChat.value = false;
-};
-
-provide('openChat', openChat);
 </script>

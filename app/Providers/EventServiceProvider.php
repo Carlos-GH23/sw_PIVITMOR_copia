@@ -2,14 +2,9 @@
 
 namespace App\Providers;
 
-use App\Events\MatchingShouldRun;
-use App\Listeners\DispatchRunMatchingJob;
-use App\Listeners\LogSuccessfulLogin;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,12 +16,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-        ],
-        Login::class => [
-            LogSuccessfulLogin::class,
-        ],
-        MatchingShouldRun::class => [
-            DispatchRunMatchingJob::class,
         ],
     ];
 

@@ -2,11 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Resources\ContactInformationResource;
-use App\Http\Resources\PolicyResource;
 use App\Http\Resources\UserResource;
-use App\Models\ContactInformation;
-use App\Models\Policy;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -38,16 +34,10 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'auth' => [
-                'user'  => $request->user()  ? new UserResource($request->user()->load('photo')) : null,
+                'user'  => $request->user()  ? new UserResource($request->user()) : null,
                 'roles' => $request->user()  ? $request->user()->getRolesArray() : [],
                 'can'   => $request->user()  ? $request->user()->getPermissionArray() : [],
             ],
-            'contactInformation' => fn() => ($contactInfo = ContactInformation::with('phoneNumbers')->first())
-                ? ContactInformationResource::make($contactInfo)
-                : null,
-            'policies' => fn() => PolicyResource::make(
-                Policy::first() ?? new Policy()
-            ),
             'ziggy' => fn() => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),

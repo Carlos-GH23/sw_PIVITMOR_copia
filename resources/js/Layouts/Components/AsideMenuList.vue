@@ -2,7 +2,7 @@
     <SidebarMenu>
         <AsideCollapsibleItem v-if="item?.menu" v-bind="item" />
 
-        <SidebarMenuItem v-else-if="verifyPermission(item?.permission)">
+        <SidebarMenuItem v-else-if="verifyPermission(item?.permission) && routeExists(item.route)">
             <SidebarMenuButton :tooltip="item.label" :isActive="activeRoute(item.route)" asChild>
                 <Link :href="route(item.route)">
                 <BaseIcon :path="item.icon" />
@@ -29,8 +29,21 @@ defineProps({
     }
 });
 
+const routeExists = (routeName) => {
+    try {
+        route(routeName);
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
 const activeRoute = (routeName) => {
-    return route().current(routeName);
+    try {
+        return route().current(routeName);
+    } catch (error) {
+        return false;
+    }
 };
 
 provide("activeRoute", activeRoute);

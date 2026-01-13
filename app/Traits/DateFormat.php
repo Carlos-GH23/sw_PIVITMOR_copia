@@ -3,40 +3,75 @@
 namespace App\Traits;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Date;
 
 trait DateFormat
 {
-    public function textFormatDate($date, $isComplete = false): Object
+    /**
+     * Format date to text format (e.g., "10 de enero de 2024").
+     *
+     * @param mixed $date
+     * @return string|null
+     */
+    protected function textFormatDate($date): ?string
     {
         if (!$date) {
-            return (object) [
-                'raw'       => null,
-                'formatted' => null,
-                'human'     => null,
-            ];
+            return null;
         }
 
-        $parsed = $date instanceof Carbon ? $date : Carbon::parse($date);
+        if (is_string($date)) {
+            $date = Carbon::parse($date);
+        }
 
-        return (object) [
-            'raw'       => $isComplete ? $parsed->format('Y-m-d\TH:i') : $parsed->format('Y-m-d'),
-            'formatted' => $isComplete ? $parsed->format('d-m-Y H:i:s') : $parsed->format('d-m-Y'),
-            'human'     => $isComplete ? $parsed->translatedFormat('j \d\e F \d\e Y H:i') : $parsed->translatedFormat('j \d\e F \d\e Y'),
-        ];
+        if (!$date instanceof Carbon) {
+            return null;
+        }
+
+        return $date->translatedFormat('d \d\e F \d\e Y');
     }
 
-    public function startOfDay($date): ?string
+    /**
+     * Format date to short format (e.g., "10/01/2024").
+     *
+     * @param mixed $date
+     * @return string|null
+     */
+    protected function shortFormatDate($date): ?string
     {
-        if (empty($date)) return null;
+        if (!$date) {
+            return null;
+        }
 
-        return Carbon::parse($date)->startOfDay()->format('Y-m-d');
+        if (is_string($date)) {
+            $date = Carbon::parse($date);
+        }
+
+        if (!$date instanceof Carbon) {
+            return null;
+        }
+
+        return $date->format('d/m/Y');
     }
 
-    public function endOfDay($date): ?string
+    /**
+     * Format datetime to text format with time (e.g., "10 de enero de 2024 15:30").
+     *
+     * @param mixed $datetime
+     * @return string|null
+     */
+    protected function textFormatDateTime($datetime): ?string
     {
-        if (empty($date)) return null;
+        if (!$datetime) {
+            return null;
+        }
 
-        return Carbon::parse($date)->endOfDay()->format('Y-m-d');
+        if (is_string($datetime)) {
+            $datetime = Carbon::parse($datetime);
+        }
+
+        if (!$datetime instanceof Carbon) {
+            return null;
+        }
+
+        return $datetime->translatedFormat('d \d\e F \d\e Y H:i');
     }
 }

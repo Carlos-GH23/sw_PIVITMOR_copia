@@ -85,7 +85,6 @@ class UserController extends Controller
         $user = $this->model::create($request->validated());
         $user->syncRoles($request->roles);
 
-        $this->createProfile($user, $request->roles[0]);
         return redirect()->route("{$this->routeName}index")->with('success', 'Usuario creado con éxito');
     }
 
@@ -134,32 +133,6 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route("{$this->routeName}index")->with('success', 'Usuario eliminado con éxito');
-    }
-
-    private function createProfile(User $user, $role)
-    {
-        switch ($role) {
-            case 2:
-                $user->company()->create([
-                    'name' => $user->name,
-                ]);
-                break;
-            case 4:
-                $user->institution()->create([
-                    'name' => $user->name,
-                ]);
-                break;
-            case 5:
-                $user->nonProfitOrganization()->create([
-                    'name' => $user->name,
-                ]);
-                break;
-            case 6:
-                $user->governmentAgency()->create([
-                    'name' => $user->name,
-                ]);
-                break;
-        }
     }
 
     protected function getOrderableRelations(): array

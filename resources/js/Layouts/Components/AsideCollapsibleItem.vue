@@ -57,8 +57,17 @@ const { menu } = defineProps({
 const activeRoute = inject("activeRoute");
 const isOpen = ref(false);
 
+const routeExists = (routeName) => {
+    try {
+        route(routeName);
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
 const filteredMenu = computed(() =>
-    menu?.filter(item => verifyPermission(item.permission)) || []
+    menu?.filter(item => verifyPermission(item.permission) && routeExists(item.route)) || []
 );
 
 onMounted(() => {
