@@ -14,31 +14,31 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             // Menu Security
-            ['name' => 'menu.security', 'description' => 'Acceso al menú de seguridad'],
+            ['name' => 'menu.security', 'description' => 'Acceso al menú de seguridad', 'module_key' => 'dashboard'],
 
             // Users
-            ['name' => 'users.index', 'description' => 'Ver usuarios'],
-            ['name' => 'users.create', 'description' => 'Crear usuarios'],
-            ['name' => 'users.edit', 'description' => 'Editar usuarios'],
-            ['name' => 'users.delete', 'description' => 'Eliminar usuarios'],
+            ['name' => 'users.index', 'description' => 'Ver usuarios', 'module_key' => 'security'],
+            ['name' => 'users.create', 'description' => 'Crear usuarios', 'module_key' => 'security'],
+            ['name' => 'users.edit', 'description' => 'Editar usuarios', 'module_key' => 'security'],
+            ['name' => 'users.delete', 'description' => 'Eliminar usuarios', 'module_key' => 'security'],
 
             // Roles
-            ['name' => 'roles.index', 'description' => 'Ver roles'],
-            ['name' => 'roles.create', 'description' => 'Crear roles'],
-            ['name' => 'roles.edit', 'description' => 'Editar roles'],
-            ['name' => 'roles.delete', 'description' => 'Eliminar roles'],
+            ['name' => 'roles.index', 'description' => 'Ver roles', 'module_key' => 'security'],
+            ['name' => 'roles.create', 'description' => 'Crear roles', 'module_key' => 'security'],
+            ['name' => 'roles.edit', 'description' => 'Editar roles', 'module_key' => 'security'],
+            ['name' => 'roles.delete', 'description' => 'Eliminar roles', 'module_key' => 'security'],
 
             // Permissions
-            ['name' => 'permissions.index', 'description' => 'Ver permisos'],
-            ['name' => 'permissions.create', 'description' => 'Crear permisos'],
-            ['name' => 'permissions.edit', 'description' => 'Editar permisos'],
-            ['name' => 'permissions.delete', 'description' => 'Eliminar permisos'],
+            ['name' => 'permissions.index', 'description' => 'Ver permisos', 'module_key' => 'security'],
+            ['name' => 'permissions.create', 'description' => 'Crear permisos', 'module_key' => 'security'],
+            ['name' => 'permissions.edit', 'description' => 'Editar permisos', 'module_key' => 'security'],
+            ['name' => 'permissions.delete', 'description' => 'Eliminar permisos', 'module_key' => 'security'],
 
             // Modules
-            ['name' => 'modules.index', 'description' => 'Ver módulos'],
-            ['name' => 'modules.create', 'description' => 'Crear módulos'],
-            ['name' => 'modules.edit', 'description' => 'Editar módulos'],
-            ['name' => 'modules.delete', 'description' => 'Eliminar módulos'],
+            ['name' => 'modules.index', 'description' => 'Ver módulos', 'module_key' => 'security'],
+            ['name' => 'modules.create', 'description' => 'Crear módulos', 'module_key' => 'security'],
+            ['name' => 'modules.edit', 'description' => 'Editar módulos', 'module_key' => 'security'],
+            ['name' => 'modules.delete', 'description' => 'Eliminar módulos', 'module_key' => 'security'],
         ];
 
         foreach ($permissions as $permission) {

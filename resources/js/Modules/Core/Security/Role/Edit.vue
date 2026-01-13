@@ -64,7 +64,7 @@ const saveForm = () => form.put(route(`${props.routeName}update`, props.role.dat
 const deleteForm = () => {
     messageConfirm().then((res) => {
         if (res.isConfirmed) {
-            form.delete(route("roles.destroy", props.role.id));
+            form.delete(route("roles.destroy", props.role.data.id));
         }
     });
 };
