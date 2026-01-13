@@ -1,20 +1,28 @@
 <script setup>
-import Footer from "./Partials/FooterGuest.vue";
-import Navbar from "./Partials/Navbar.vue";
+import { computed } from "vue";
 import { useStyleStore } from "@/stores/style.js";
-import { containerMaxW } from "@/config.js";
+import { usePage } from "@inertiajs/vue3";
+import NavBar from "@/Components/NavBar.vue";
+import NavBarItem from "@/Components/NavBarItem.vue";
+import { navbarMenu } from "./Composables/navbarMenu.js";
 
 const styleStore = useStyleStore();
+const page = usePage();
+
+const logoItem = computed(() => ({
+  label: page.props.auth.user?.name || 'Invitado',
+  href: '/',
+}));
 </script>
 
 <template>
   <div :class="{ dark: styleStore.darkMode }">
-    <Navbar />
-    
-    <div class="w-screen">
+    <NavBar :menu="navbarMenu">
+      <NavBarItem :item="logoItem" />
+    </NavBar>
+
+    <div class="w-screen min-h-screen pt-14">
       <slot />
     </div>
-    <Footer />
-
   </div>
 </template>

@@ -13,6 +13,9 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
+            // Menu Security
+            ['name' => 'menu.security', 'description' => 'Acceso al menú de seguridad'],
+
             // Users
             ['name' => 'users.index', 'description' => 'Ver usuarios'],
             ['name' => 'users.create', 'description' => 'Crear usuarios'],

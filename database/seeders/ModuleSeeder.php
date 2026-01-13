@@ -13,13 +13,13 @@ class ModuleSeeder extends Seeder
     public function run(): void
     {
         $modules = [
-            ['name' => 'Seguridad', 'description' => 'Módulo de administración de seguridad', 'icon' => 'shield-check', 'is_active' => true],
-            ['name' => 'Dashboard', 'description' => 'Panel de control principal', 'icon' => 'dashboard', 'is_active' => true],
+            ['name' => 'Seguridad', 'description' => 'Módulo de administración de seguridad', 'key' => 'security'],
+            ['name' => 'Dashboard', 'description' => 'Panel de control principal', 'key' => 'dashboard'],
         ];
 
         foreach ($modules as $module) {
             Module::firstOrCreate(
-                ['name' => $module['name']],
+                ['key' => $module['key']],
                 $module
             );
         }
